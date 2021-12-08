@@ -1,0 +1,18 @@
+{
+  "lang": "ru",
+  "checkYo": false,
+  "fileExtensions": [
+    ".md"
+  ],
+  "excludeFiles": [
+    ".git",
+    ".markdownlintrc"
+  ],
+  "ignoreUppercase": true,
+  "ignoreUrls": true,
+  "ignoreCapitalization": true,
+  "ignoreText": [],
+  "dictionary": [
+
+  ]
+}

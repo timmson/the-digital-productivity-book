@@ -1,0 +1,29 @@
+{
+  "name": "the-book",
+  "version": "1.0.0",
+  "description": "For book writing",
+  "main": "index.js",
+  "private": true,
+  "scripts": {
+    "lint": "npx markdownlint-cli content/*.md --fix",
+    "spell": "npx yaspeller -l ru content/*.md",
+    "check": "npm run lint && npm run spell"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/timmson/the-book/wiki.git"
+  },
+  "keywords": [
+    "book"
+  ],
+  "author": "Krotov Artem",
+  "license": "Private",
+  "bugs": {
+    "url": "https://github.com/timmson/the-book/issues"
+  },
+  "homepage": "https://github.com/timmson/the-book#readme",
+  "devDependencies": {
+    "markdownlint-cli": "0.30.0",
+    "yaspeller": "8.0.0"
+  }
+}
