@@ -13,6 +13,7 @@
   "ignoreCapitalization": true,
   "ignoreText": [],
   "dictionary": [
-
+    "айтишник.*",
+    "фич.*"
   ]
 }
