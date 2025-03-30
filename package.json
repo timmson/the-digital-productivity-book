@@ -5,13 +5,13 @@
   "main": "index.js",
   "private": true,
   "scripts": {
-    "lint": "npx markdownlint-cli content/*.md --fix",
-    "spell": "npx yaspeller -l ru content/*.md",
+    "lint": "npx markdownlint-cli docs/*.md --fix",
+    "spell": "npx cspell docs/*.md --cache --show-suggestions --no-progress",
     "check": "npm run lint && npm run spell"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/timmson/the-book/wiki.git"
+    "url": "git+https://github.com/timmson/the-digital-productivity/wiki.git"
   },
   "keywords": [
     "book"
@@ -23,7 +23,8 @@
   },
   "homepage": "https://github.com/timmson/the-book#readme",
   "devDependencies": {
-    "markdownlint-cli": "0.30.0",
-    "yaspeller": "8.0.0"
+    "@cspell/dict-ru_ru": "^2.2.4",
+    "cspell": "^8.18.1",
+    "markdownlint-cli": "0.44.0"
   }
 }
