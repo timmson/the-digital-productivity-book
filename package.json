@@ -7,7 +7,7 @@
   "scripts": {
     "lint": "npx markdownlint-cli docs/*.md --fix",
     "spell": "npx cspell docs/*.md --cache --show-suggestions --no-progress",
-    "check": "npm run lint && npm run spell"
+    "start": "npm run lint && npm run spell"
   },
   "repository": {
     "type": "git",
