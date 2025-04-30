@@ -43,6 +43,18 @@ export const createChapter = (config: Config, structure: any): Array<Paragraph> 
                         })
                     ]
                 })
+            case "blockquote":
+                return new Paragraph({
+                    pageBreakBefore: paragraph.depth,
+                    children: [
+                        new TextRun({
+                            text: paragraph.text,
+                            font: config.font,
+                            italics: true,
+                            size: "14pt"
+                        })
+                    ]
+                })
             default:
                 return new Paragraph({
                     children: [
