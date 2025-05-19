@@ -1,5 +1,5 @@
 import * as fs from "fs"
-import {Document, HeadingLevel, Packer, PageBreak, PageMargin, Paragraph, TextRun} from "docx"
+import {Packer} from "docx"
 import {createChapter, createDOCX} from "./create-docx"
 
 import {lexer} from "marked"
