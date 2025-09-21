@@ -34,5 +34,5 @@ const children = [contents, ...files]
 const docx = createDOCX(config, children)
 
 Packer.toBuffer(docx).then((buffer) =>
-    fs.writeFileSync("./docs/distr/the-productivity-book.docx", buffer)
+    fs.writeFileSync("./docs/distr/the-digital-productivity-book.docx", buffer)
 )

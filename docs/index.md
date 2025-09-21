@@ -1,5 +1,7 @@
 # Книга "Цидукуция. Советы по продуктивности в цифровом мире"
 
+![cover.png](./distr/cover.png)
+
 - [Предисловие](foreword.md)
 - [Что такое продуктивность?](productivity.md)
 - [Что такое видение?](vision.md)
@@ -29,6 +31,8 @@
 - [Обучение: Как приобретать новые знания?](learning.md)
 - [Программирование: Почему вам стоить попробовать?](programming.md)
 - [Автоматизация: Что и как можно автоматизировать?](automation.md)
+
+Скачать в [docx](distr/the-digital-productivity-book.docx) или [fb2](distr/the-digital-productivity-book.fb2).
 
 Эта книга выпускается под лицензией [Creative Commons Attribution 4.0 International License][cc-by].
 
