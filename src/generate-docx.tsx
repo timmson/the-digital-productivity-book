@@ -8,7 +8,7 @@ let contents = fs.readFileSync("./docs/index.md", "utf-8");
 const index = lexer(contents)
 
 const config = {
-    title: "Цифровая продуктивность",
+    title: "Цидукуция. Советы по продуктивности в цифровом мире",
     font: "Times New Roman",
     index: index,
 }
