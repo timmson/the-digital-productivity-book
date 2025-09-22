@@ -4,9 +4,13 @@ export const globalConfig = {
         firstName: "Артём",
         lastName: "Кротов"
     },
+    genre: "popular_business",
     year: "2025",
     version: "1.0",
-    logo: "../distr/cover.jpg"
+    cover: {
+        "name" : "cover.jpg",
+        "base64" : ""
+    }
 }
 
 export interface GlobalConfig {
@@ -15,7 +19,11 @@ export interface GlobalConfig {
         firstName: string
         lastName: string
     }
+    genre: string
     year: string
     version: string
-    logo: string
+    cover: {
+        name: string
+        base64: string
+    }
 }
