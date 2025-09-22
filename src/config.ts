@@ -1,5 +1,5 @@
 export const globalConfig = {
-    title: "Цидукция. Советы по продуктивности в цифровом мире",
+    title: "Цидукция. Жить, а не выжимать!",
     author: {
         firstName: "Артём",
         lastName: "Кротов"
