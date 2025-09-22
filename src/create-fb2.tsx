@@ -5,11 +5,16 @@ interface Fb2Config extends GlobalConfig {
 
 }
 
+export interface Fb2Paragraph {
+    name: string
+    value?: string | Fb2Paragraph
+}
+
 /*
 @also http://www.fictionbook.org/index.php/%D0%9E%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D0%B5_Fictionbook
 */
 
-export const createFB2 = (config: Fb2Config, chapters: Array<any>): any => ({
+export const createFB2 = (config: Fb2Config): any => ({
     "FictionBook": {
         "@xmlns": "http://www.gribuser.ru/xml/fictionbook/2.0",
         "@xmlns:l": "http://www.w3.org/1999/xlink",
@@ -20,9 +25,15 @@ export const createFB2 = (config: Fb2Config, chapters: Array<any>): any => ({
                     "first-name": config.author.firstName,
                     "last-name": config.author.lastName
                 },
-                "genre": config.genre,
+                "genre": Object.keys(config.genre)
+                    .map((genre) => ({
+                        "@match": config.genre[genre],
+                        "#": genre
+                    })),
                 "lang": "ru",
                 "date": config.year,
+                "version": config.version,
+                "annotation": {"p": config.annotation},
                 "coverage": {
                     "image": {
                         "@l:href": `#${config.cover.name}`
@@ -39,13 +50,6 @@ export const createFB2 = (config: Fb2Config, chapters: Array<any>): any => ({
                 "year": config.year
             }
         },
-        "body": {
-            "section": chapters.map((it) => ({
-                    "title": it.title,
-                    "p": it.paragraphs
-                }
-            ))
-        },
         "binary": [
             {
                 "@id": config.cover.name,
@@ -56,26 +60,18 @@ export const createFB2 = (config: Fb2Config, chapters: Array<any>): any => ({
     }
 })
 
-export const createChapter = (file: string): any => {
-    const section = {
-        title: "",
-        paragraphs: []
-    }
-
-    lexer(file).forEach((paragraph) => {
-        switch (paragraph.type) {
-            case "heading":
-                if (paragraph.depth === 1) {
-                    section.title = paragraph.text
-                } else {
-                    section.paragraphs.push(paragraph.text)
-                }
-                break
-            case "paragraph":
-                section.paragraphs.push(paragraph.text)
-                break
-        }
-    })
-
-    return section
-}
+export const createChapter = (file: string): Array<Fb2Paragraph> =>
+    lexer(file).map((paragraph) => {
+            switch (paragraph.type) {
+                case "heading":
+                    return {name: (paragraph.depth === 1 ? "title" : "subtitle"), value: paragraph.text}
+                case "paragraph":
+                    return {name: "p", value: paragraph.text}
+                case "blockquote":
+                    return {name: "emphasis", value: {name: "p", value: paragraph.text}}
+                case "space":
+                    return {name: "empty-line"}
+                default:
+                    return {name: "p", value: `???? - ${paragraph.type}`}
+            }
+        })
