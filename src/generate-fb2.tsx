@@ -8,7 +8,8 @@ const contents = fs.readFileSync("./docs/index.md", "utf-8")
 const index = lexer(contents)
 
 const config = {
-    ...globalConfig, cover: {
+    ...globalConfig,
+    cover: {
         ...globalConfig.cover,
         base64: fs.readFileSync(`./docs/distr/${globalConfig.cover.name}`).toString("base64")
     }
