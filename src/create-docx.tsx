@@ -1,11 +1,11 @@
+import {GlobalConfig} from "./config"
 import {Document, Paragraph, HeadingLevel, TextRun, FileChild, Table, TableRow, TableCell} from "docx"
 
-interface Config {
-    title: string
+interface DocxConfig extends GlobalConfig{
     font: string
 }
 
-export const createDOCX = (config: Config, children: Array<FileChild>) =>
+export const createDOCX = (config: DocxConfig, children: Array<FileChild>) =>
     new Document({
             sections: [
                 {
@@ -28,7 +28,7 @@ export const createDOCX = (config: Config, children: Array<FileChild>) =>
     )
 
 
-export const createChapter = (config: Config, structure: any): Array<Paragraph> => {
+export const createChapter = (config: DocxConfig, structure: any): Array<Paragraph> => {
     return structure.map((paragraph) => {
         switch (paragraph.type) {
             case "heading":

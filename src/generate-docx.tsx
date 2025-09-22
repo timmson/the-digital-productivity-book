@@ -1,16 +1,16 @@
 import * as fs from "fs"
 import {Packer} from "docx"
-import {createChapter, createDOCX} from "./create-docx"
-
 import {lexer} from "marked"
+import {globalConfig} from "./config"
+import {createChapter, createDOCX} from "./create-docx"
 
 let contents = fs.readFileSync("./docs/index.md", "utf-8");
 const index = lexer(contents)
 
 const config = {
-    title: "Цидукуция. Советы по продуктивности в цифровом мире",
+    ...globalConfig,
     font: "Times New Roman",
-    index: index,
+    index: index
 }
 
 const extractHref = (element: any): Array<string> => {
