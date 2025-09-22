@@ -31,8 +31,10 @@
 - [Обучение: Как приобретать новые знания?](learning.md)
 - [Программирование: Почему вам стоить попробовать?](programming.md)
 - [Автоматизация: Что и как можно автоматизировать?](automation.md)
+- [Заключение](conclusion.md)
+- [Благодарности](acknowledgments.md)
 
-Скачать в [docx](distr/the-digital-productivity-book.docx) или [fb2](distr/the-digital-productivity-book.fb2).
+Скачать в [docx](distr/the-digital-productivity-book.docx) или [fb2](distr/the-digital-productivity-book.fb2). Аудио версия будет доступна чуть позже.
 
 Эта книга выпускается под лицензией [Creative Commons Attribution 4.0 International License][cc-by].
 
