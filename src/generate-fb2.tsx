@@ -3,6 +3,7 @@ import {lexer} from "marked"
 import {create} from "xmlbuilder2"
 import {globalConfig} from "./config"
 import {createFB2} from "./create-fb2"
+import {createChapter} from "./create-docx";
 
 
 let contents = fs.readFileSync("./docs/index.md", "utf-8")
@@ -23,15 +24,14 @@ const extractHref = (element: any): Array<string> => {
     return []
 }
 
-// const files = index.map((item) => extractHref(item))
-//     .flat().filter((file) => file !== "LICENSE")
-//     .map((file) => fs.readFileSync(`./docs/${file}`, "utf-8"))
+const files = index.map((item) => extractHref(item))
+    .flat().filter((file) => file !== "LICENSE")
+    .map((file) => fs.readFileSync(`./docs/${file}`, "utf-8"))
 
-// const children = [contents, ...files]
-//     .map((file) => createChapter(config, lexer(file)))
-//     .flat()
+const children = files.map((file) => createChapter(config, lexer(file)))
+    .flat()
 
-const fb2 = createFB2(config, [] /*children*/)
+const fb2 = createFB2(config, children)
 const xml = create(fb2).end({prettyPrint: true})
 console.log(xml)
 //fs.writeFileSync("./docs/distr/the-digital-productivity-book.fb2", fb2)
