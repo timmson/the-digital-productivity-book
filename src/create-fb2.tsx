@@ -1,5 +1,6 @@
 import {lexer} from "marked"
 import {GlobalConfig} from "./config"
+import {XMLBuilder} from "xmlbuilder2/lib/interfaces";
 
 interface Fb2Config extends GlobalConfig {
 
@@ -61,24 +62,48 @@ export const createFB2 = (config: Fb2Config): any => ({
 })
 
 /**
- * table and code type
+ * code type
  *
  */
 
-export const createChapter = (file: string): Array<Fb2Paragraph> =>
-    lexer(file).map((paragraph) => {
+export const createChapter = (file: string, section: XMLBuilder) => {
+    lexer(file).forEach((paragraph) => {
         switch (paragraph.type) {
             case "heading":
-                return [{name: (paragraph.depth === 1 ? "title" : "subtitle"), value: paragraph.text}]
+                (paragraph.depth === 1 ? section.ele("title") : section.ele("subtitle")).txt(paragraph.text)
+                break
             case "paragraph":
-                return [{name: "p", value: paragraph.text}]
+                section.ele("p").txt(paragraph.text)
+                break
             case "blockquote":
-                return [{name: "emphasis", value: {name: "p", value: paragraph.text}}]
+                section.ele("p").ele("emphasis").txt(paragraph.text)
+                break
             case "space":
-                return [{name: "empty-line"}]
+                section.ele("empty-line")
+                break
             case "list":
-                return paragraph.items.map((it) => ({name: "p", value: "- " + it.text}))
+                paragraph.items.map((it) => section.ele("p").txt(`- ${it.text}`))
+                break
+            case "table":
+                const table = section.ele("table")
+
+                //header
+                const header = table.ele("tr")
+                paragraph.header.forEach((it) => header.ele("th").ele("p").txt(it.text))
+
+                //rows
+                paragraph.rows.forEach((row) => {
+                    const tr = table.ele("tr")
+                    row.forEach((cell) => {
+                        tr.ele("td").txt(cell.text)
+                    })
+                })
+                break
+            case "code":
+                section.ele("p").ele("code").txt(paragraph.text)
+                break
             default:
-                return [{name: "p", value: `???? - ${paragraph.type}`}]
+                section.ele("p").txt(`???? - ${paragraph.type}`)
         }
-    }).flat()
+    })
+}

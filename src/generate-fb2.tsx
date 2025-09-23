@@ -3,18 +3,9 @@ import {lexer} from "marked"
 import {create} from "xmlbuilder2"
 import {globalConfig} from "./config"
 import {createChapter, createFB2, Fb2Paragraph} from "./create-fb2"
-import {XMLBuilder} from "xmlbuilder2/lib/interfaces";
 
 const contents = fs.readFileSync("./docs/index.md", "utf-8")
 const index = lexer(contents)
-
-const config = {
-    ...globalConfig,
-    cover: {
-        ...globalConfig.cover,
-        base64: fs.readFileSync(`./docs/distr/${globalConfig.cover.name}`).toString("base64")
-    }
-}
 
 const extractHref = (element: any): Array<string> => {
     if (element["href"])
@@ -26,31 +17,20 @@ const extractHref = (element: any): Array<string> => {
     return []
 }
 
-const addFb2Chapter = (section: XMLBuilder, paragraph: Fb2Paragraph) => {
-    const newSection = section.ele(paragraph.name)
 
-    if (paragraph.name === "empty-line") {
-        return
-    }
-
-    if (typeof paragraph.value === "string") {
-        newSection.txt(paragraph.value)
-    } else {
-        addFb2Chapter(newSection, paragraph.value)
-    }
-}
-
-const fb2 = create(createFB2(config))
+const fb2 = create(createFB2(globalConfig))
+const body = fb2.root().ele("body")
 
 index.map((item) => extractHref(item))
     .flat().filter((file) => file.indexOf(".md") >= 0)
-    .map((file) => createChapter(fs.readFileSync(`./docs/${file}`, "utf-8")))
-    .forEach((chapter) => {
-        const section = fb2.root().ele("body").ele("section")
-        chapter.map((paragraph) => {
-              addFb2Chapter(section, paragraph)
-        })
+    .forEach((file) => {
+        createChapter(fs.readFileSync(`./docs/${file}`, "utf-8"), body.ele("section"))
     })
+
+fb2.root().ele("binary")
+    .att("id", globalConfig.cover.name)
+    .att("content-type", "image/jpeg")
+    .txt(fs.readFileSync(`./docs/distr/${globalConfig.cover.name}`).toString("base64"))
 
 const src= fb2.end({prettyPrint: true}).replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")
 fs.writeFileSync("./docs/distr/the-digital-productivity-book.fb2", src)
