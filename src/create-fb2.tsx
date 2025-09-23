@@ -67,16 +67,18 @@ export const createFB2 = (config: Fb2Config): any => ({
 
 export const createChapter = (file: string): Array<Fb2Paragraph> =>
     lexer(file).map((paragraph) => {
-            switch (paragraph.type) {
-                case "heading":
-                    return {name: (paragraph.depth === 1 ? "title" : "subtitle"), value: paragraph.text}
-                case "paragraph":
-                    return {name: "p", value: paragraph.text}
-                case "blockquote":
-                    return {name: "emphasis", value: {name: "p", value: paragraph.text}}
-                case "space":
-                    return {name: "empty-line"}
-                default:
-                    return {name: "p", value: `???? - ${paragraph.type}`}
-            }
-        })
+        switch (paragraph.type) {
+            case "heading":
+                return [{name: (paragraph.depth === 1 ? "title" : "subtitle"), value: paragraph.text}]
+            case "paragraph":
+                return [{name: "p", value: paragraph.text}]
+            case "blockquote":
+                return [{name: "emphasis", value: {name: "p", value: paragraph.text}}]
+            case "space":
+                return [{name: "empty-line"}]
+            case "list":
+                return paragraph.items.map((it) => ({name: "p", value: "- " + it.text}))
+            default:
+                return [{name: "p", value: `???? - ${paragraph.type}`}]
+        }
+    }).flat()

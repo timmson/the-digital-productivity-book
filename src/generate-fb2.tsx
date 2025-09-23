@@ -48,7 +48,7 @@ index.map((item) => extractHref(item))
     .forEach((chapter) => {
         const section = fb2.root().ele("body").ele("section")
         chapter.map((paragraph) => {
-            addFb2Chapter(section, paragraph)
+              addFb2Chapter(section, paragraph)
         })
     })
 
