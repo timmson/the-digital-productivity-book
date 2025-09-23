@@ -52,4 +52,5 @@ index.map((item) => extractHref(item))
         })
     })
 
-fs.writeFileSync("./docs/distr/the-digital-productivity-book.fb2", fb2.end({prettyPrint: true}))
+const src= fb2.end({prettyPrint: true}).replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")
+fs.writeFileSync("./docs/distr/the-digital-productivity-book.fb2", src)

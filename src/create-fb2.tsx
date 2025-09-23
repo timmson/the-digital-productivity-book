@@ -60,6 +60,11 @@ export const createFB2 = (config: Fb2Config): any => ({
     }
 })
 
+/**
+ * table and code type
+ *
+ */
+
 export const createChapter = (file: string): Array<Fb2Paragraph> =>
     lexer(file).map((paragraph) => {
             switch (paragraph.type) {

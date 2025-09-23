@@ -8,7 +8,8 @@
     "lint": "npx markdownlint-cli docs/*.md --fix",
     "spell": "npx cspell docs/*.md --cache --show-suggestions --no-progress",
     "check": "npm run lint && npm run spell",
-    "start": "npm run check && npx tsx ./src/generate-fb2.tsx && npx tsx ./src/generate-docx.tsx"
+    "build": "npx tsx ./src/generate-fb2.tsx && npx tsx ./src/generate-docx.tsx",
+    "start": "npm run check && npm run build"
   },
   "repository": {
     "type": "git",
