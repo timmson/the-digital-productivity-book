@@ -1,6 +1,6 @@
 import {lexer} from "marked"
 import {GlobalConfig} from "./config"
-import {XMLBuilder} from "xmlbuilder2/lib/interfaces";
+import {XMLBuilder} from "xmlbuilder2/lib/interfaces"
 
 interface Fb2Config extends GlobalConfig {
 

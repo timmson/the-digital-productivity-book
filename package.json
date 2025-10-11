@@ -8,7 +8,7 @@
     "lint": "npx markdownlint-cli docs/*.md --fix",
     "spell": "npx cspell docs/*.md --cache --show-suggestions --no-progress",
     "check": "npm run lint && npm run spell",
-    "build": "npx tsx ./src/generate-fb2.tsx && npx tsx ./src/generate-docx.tsx",
+    "build": "npx tsx ./src/generate-fb2.tsx",
     "start": "npm run check && npm run build"
   },
   "repository": {
@@ -32,7 +32,6 @@
     "xmlbuilder2": "^3.1.1"
   },
   "dependencies": {
-    "docx": "^9.4.1",
     "marked": "^15.0.11",
     "typescript": "^5.8.3"
   }
