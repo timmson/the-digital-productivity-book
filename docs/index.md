@@ -33,6 +33,7 @@
 - [Автоматизация: Что и как можно автоматизировать?](automation.md)
 - [Заключение](conclusion.md)
 - [Благодарности](acknowledgments.md)
+- [Об авторе](about.md)
 
 Скачать в [docx](distr/the-digital-productivity-book.docx) или [fb2](distr/the-digital-productivity-book.fb2). Аудио версия будет доступна чуть позже.
 
