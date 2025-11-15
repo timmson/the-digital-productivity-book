@@ -1,6 +1,6 @@
 # Книга "Цидукция. Жить, а не выжимать!"
 
-Читать [онлайн](https://timmson.github.io/the-digital-productivity-book/).
+Читать [онлайн](https://tsidukciya.gitub.io/).
 
 Эта книга выпускается под лицензией [Creative Commons Attribution 4.0 International License][cc-by].
 
