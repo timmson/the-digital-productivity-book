@@ -32,4 +32,4 @@ fb2.root().ele("binary")
     .att("content-type", "image/jpeg")
     .txt(fs.readFileSync(`./docs/distr/${globalConfig.cover.name}`).toString("base64"))
 
-fs.writeFileSync("./docs/distr/the-digital-productivity-book.fb2", fb2.end({prettyPrint: true}))
+fs.writeFileSync("./docs/distr/tsidukciya.fb2", fb2.end({prettyPrint: true}))

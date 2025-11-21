@@ -37,7 +37,7 @@
 - [Благодарности](acknowledgments.md)
 - [Об авторе](about.md)
 
-Скачать в [docx](distr/the-digital-productivity-book.docx) или [fb2](distr/the-digital-productivity-book.fb2). Аудио версия будет доступна чуть позже.
+Скачать в [docx](distr/tsidukciya.docx) или [fb2](distr/tsidukciya.fb2). Аудио версия будет доступна чуть позже.
 
 Эта книга выпускается под лицензией [Creative Commons Attribution 4.0 International License][cc-by].
 
